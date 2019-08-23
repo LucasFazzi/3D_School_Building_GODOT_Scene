@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Meshes/G009SXD9TCJM.glb" type="PackedScene" id=1]
+[ext_resource path="res://Script/FPS.gd" type="Script" id=2]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1 )
+
+[sub_resource type="CapsuleShape" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Ground" type="StaticBody" parent="."]
+editor/display_folded = true
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Scene Root" parent="." instance=ExtResource( 1 )]
+transform = Transform( 215, 0, 0, 0, 215, 0, 0, 0, 215, -3.94074, 0.737536, -41.0377 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.756996, -0.200731, -0.621823, -0.159982, -0.865744, 0.47423, -0.633532, 0.45847, 0.623251, -5.53275, 31.7286, -40.7901 )
+light_color = Color( 0.72549, 0.027451, 0.027451, 1 )
+
+[node name="FPS" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.02528, 0 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="FPS"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, -2.17024, 0 )
+shape = SubResource( 3 )
+
+[node name="Camera" type="Camera" parent="FPS"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.10359, 0 )
+current = true
